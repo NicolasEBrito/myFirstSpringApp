@@ -47,10 +47,6 @@ public class Libro {
         return alta;
     }
 
-    public void setAlta(Date alta) {
-        this.alta = alta;
-    }
-
     public Autor getAutor() {
         return autor;
     }
@@ -72,4 +68,9 @@ public class Libro {
 
     @ManyToOne
     private Editorial editorial;
+
+    public void setAlta(java.util.Date alta2) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setAlta'");
+    }
 }
