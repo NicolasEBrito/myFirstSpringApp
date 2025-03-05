@@ -96,12 +96,17 @@ public class LibroServicio {
         if (ejemplares == null) {
             throw new MiException("ejemplares no puede ser nulo");
         }
-        if (idAutor == null || idAutor == null) {
+        if (idAutor == null) {
             throw new MiException("el Autor no puede ser nulo o estar vacio");
         }
 
-        if (idEditorial == null || idEditorial == null) {
+        if (idEditorial == null) {
             throw new MiException("La Editorial no puede ser nula o estar vacia");
         }
+    }
+
+    @Transactional(readOnly = true)
+    public Libro getOne(Long isbn) {
+        return libroRepositorio.getReferenceById(isbn);
     }
 }
