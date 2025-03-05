@@ -19,7 +19,7 @@ public class AutorServicio {
     private AutorRepositorio autorRepositorio;
 
     @Transactional
-    public void crearAutor(String nombre) throws MiException {
+    public static void crearAutor(String nombre) throws MiException {
         validar(nombre);
         Autor autor = new Autor();// Instancio un objeto del tipo Autor
         autor.setNombre(nombre);// Seteo el atributo, con el valor recibido como parámetro
@@ -46,7 +46,7 @@ public class AutorServicio {
         }
     }
 
-    private void validar(String nombre) throws MiException {
+    private static void validar(String nombre) throws MiException {
 
         if (nombre.isEmpty() || nombre == null) {
             throw new MiException("el nombre no puede ser nulo o estar vacio");

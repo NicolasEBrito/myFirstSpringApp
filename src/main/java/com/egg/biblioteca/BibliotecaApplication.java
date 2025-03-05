@@ -1,4 +1,4 @@
-package com.egg.biblioteca.servicios;
+package com.egg.biblioteca;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
