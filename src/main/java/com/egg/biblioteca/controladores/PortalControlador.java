@@ -1,6 +1,7 @@
 package com.egg.biblioteca.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,15 +24,16 @@ public class PortalControlador {
         return "index.html"; // Acá es que retornamos con el método.
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/registrar")
     public String registrar() {
         return "registro.html";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login.html";
-    }
+    // @GetMapping("/login")
+    // public String login() {
+    // return "login.html";
+    // }
 
     @PostMapping("/registro")
     public String registro(@RequestParam String nombre, String email, String password, String password2,
@@ -47,4 +49,19 @@ public class PortalControlador {
             return "registro.html";
         }
     }
+
+    @GetMapping("/login")
+    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
+        if (error != null) {
+            modelo.put("error", "Usuario o Contraseña inválidos!");
+        }
+        return "login.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER','ROLE_ADMIN')")
+    @GetMapping("/inicio")
+    public String inicio() {
+        return "inicio.html";
+    }
+
 }
